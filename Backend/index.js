@@ -4,8 +4,8 @@ const config = require("config");
 const app = express();
 
 const login = require("./route/login");
-const list = require("./route/list");
 const user = require("./route/user");
+const list = require("./route/list");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
