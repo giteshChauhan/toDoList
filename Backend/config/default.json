@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "pass1234"
+  "jwtPrivateKey": "pass1234",
+  "db": "mongodb://localhost/toDoList"
 }
