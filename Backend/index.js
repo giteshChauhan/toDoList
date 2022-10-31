@@ -3,6 +3,8 @@ const express = require("express");
 const config = require("config");
 const app = express();
 
+const auth = require("./middleware/auth");
+
 const login = require("./route/login");
 const user = require("./route/user");
 const list = require("./route/list");
@@ -12,7 +14,7 @@ app.use(express.json());
 
 app.use("/api/login", login);
 app.use("/api/user", user);
-app.use("/api/list", list);
+app.use("/api/list", auth, list);
 
 mongoose
   .connect(config.get("db"))
