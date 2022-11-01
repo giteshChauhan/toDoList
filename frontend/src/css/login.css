@@ -1,0 +1,73 @@
+@media screen and (max-width: 1150px) {
+  .myBox {
+    width: 50% !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .myBox {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .myLogin {
+    margin: 7% 1rem !important;
+  }
+}
+
+.myLogin {
+  margin: 9% 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  overflow: auto;
+  height: 100%;
+  padding: 2rem;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  margin: 15px 5px;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid rgba(4, 4, 236, 0.9);
+  box-shadow: 0 0 1px 1px #ced4da;
+}
+
+.myBtn {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+  background-color: rgba(4, 4, 236, 0.9);
+  border: none;
+  border-radius: 0.375rem;
+  padding: 7px 0;
+}
+
+.myBox {
+  width: 40%;
+}
+
+.myText {
+  font-weight: bold;
+  color: rgba(4, 4, 236, 0.9);
+}
+
+.myText:hover {
+  cursor: pointer;
+}
