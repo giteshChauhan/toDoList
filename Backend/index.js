@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
 const config = require("config");
+const cors = require("cors");
 const app = express();
 
 const auth = require("./middleware/auth");
@@ -11,6 +12,7 @@ const list = require("./route/list");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 app.use("/api/login", login);
 app.use("/api/user", user);
