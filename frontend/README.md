@@ -1,6 +1,7 @@
 ## DOM Tree:
 
-<pre>                      App
+<pre> 
+                           App
                           / |  \
                          /  |   \
                         /   |    \
