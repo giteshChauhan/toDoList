@@ -83,6 +83,7 @@ router.delete("/:id", async (req, res) => {
     },
     { new: true }
   );
+  if (!userToDo) return res.status(400).send("No such item");
   res.status(200).send(userToDo.list);
 });
 
