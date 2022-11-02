@@ -12,7 +12,10 @@ listService.interceptors.response.use(null, (error) => {
     error.response.status < 500;
 
   if (!expectedError) toast("Something failed");
-  if (error && (error.response.status === 400 || error.response.status === 401))
+  if (
+    error.response &&
+    (error.response.status === 400 || error.response.status === 401)
+  )
     toast(`${error.response.data}`);
   return Promise.reject(error);
 });
