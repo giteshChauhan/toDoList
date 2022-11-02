@@ -1,3 +1,2 @@
-## About:
-
-Web app to maintain personal todoList.
+## About: 
+ToDoList web app assignment
