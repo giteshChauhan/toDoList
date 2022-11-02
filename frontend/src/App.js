@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 
+import Profile from "./components/main/profile";
 import Signup from "./components/main/signup";
 import Login from "./components/main/login";
 import Home from "./components/main/home";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Home user={user} />} />
         {!user && <Route path="/signup" element={<Signup />} />}
         {!user && <Route path="/login" element={<Login />} />}
+        {user && <Route path="/profile" element={<Profile user={user} />} />}
       </Routes>
     </>
   );
