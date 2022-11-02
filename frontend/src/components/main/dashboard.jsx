@@ -61,8 +61,8 @@ const DashBoard = () => {
   };
 
   const handleLists = useCallback(async () => {
-    const { data } = await getLists();
-    setLists(data);
+    const res = await getLists();
+    if (res) setLists(res.data);
   }, []);
 
   useEffect(() => {
