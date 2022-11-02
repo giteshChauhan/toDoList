@@ -15,7 +15,7 @@ export function getLists() {
 }
 
 export function checkItem(listId, itemId) {
-  return http.put(`apiEndPoint/check/${listId}/${itemId}`, token);
+  return http.put(`${apiEndPoint}/check/${listId}/${itemId}`, token);
 }
 
 export function deleteList(listId) {
