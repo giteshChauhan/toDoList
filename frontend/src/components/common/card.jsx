@@ -4,39 +4,13 @@ import {
   BiMessageSquareX,
 } from "react-icons/bi";
 import { AiOutlineSend } from "react-icons/ai";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import "../../css/card.css";
 
-import { sendList } from "../../services/listService";
-import auth from "../../services/authService";
-
-const Card = () => {
+const Card = ({ onSend }) => {
   const [itemsList, setItemsList] = useState([{ item: "item1" }]);
   const [listItem, setListItem] = useState("");
   const [title, setTitle] = useState("");
-
-  const sendCard = async () => {
-    const user = auth.getCurrentUser();
-    if (!user) {
-      toast("Please Login");
-      return;
-    }
-    if (itemsList.length === 0) {
-      toast("Add some items");
-      return;
-    }
-    if (title === "") {
-      toast("Add title");
-      return;
-    }
-    try {
-      await sendList(title, itemsList);
-      toast("Sent 😃");
-    } catch (ex) {
-      // axios interceptor will auto cath the error as declared in my httpServices
-    }
-  };
 
   const removeItem = (ind) => {
     const items = itemsList.filter((it, index) => index !== ind);
@@ -110,7 +84,7 @@ const Card = () => {
           size="2rem"
           color="rgba(4, 4, 236, 0.9)"
           className="myLogo"
-          onClick={() => sendCard()}
+          onClick={() => onSend(title, itemsList)}
         />
       </div>
     </div>

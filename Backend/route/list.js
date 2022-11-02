@@ -28,7 +28,10 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/check/:listId/:itemId", async (req, res) => {
-  if (!mongoose.isValidObjectId(req.params.id))
+  if (!mongoose.isValidObjectId(req.params.listId))
+    return res.status(400).send("Invalid Id");
+
+  if (!mongoose.isValidObjectId(req.params.itemId))
     return res.status(400).send("Invalid Id");
 
   const userToDo = await List.findOneAndUpdate(
@@ -40,7 +43,7 @@ router.put("/check/:listId/:itemId", async (req, res) => {
     },
     { new: true }
   );
-  res.status(200).send(userToDo.list);
+  res.status(200).send("Checked");
 });
 
 router.delete("/:id", async (req, res) => {

@@ -1,12 +1,15 @@
 import { BiMessageSquare, BiMessageSquareCheck } from "react-icons/bi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import moment from "moment";
 import "../../css/note.css";
 
-const Note = () => {
+const Note = ({ list, onCheck, onRemove }) => {
+  const { title, items, date, _id: listId } = list;
+
   return (
     <div className="myNoteBody">
       <div className="myListName">
-        <h4>Title</h4>
+        <h4>{title}</h4>
         <hr className="myHr" />
       </div>
       <div
@@ -18,21 +21,44 @@ const Note = () => {
           height: "200px",
         }}
       >
-        <BiMessageSquare
-          size="1rem"
-          color="rgba(4, 4, 236, 0.9)"
-          className="myLogo"
-          style={{ margin: "5px" }}
-        />
-        <span>Kuchh task jo krna hoga</span>
+        {items.map(({ item, isCheck, _id }) => {
+          if (isCheck) {
+            return (
+              <div className="myListItem" key={_id}>
+                <BiMessageSquareCheck
+                  size="1rem"
+                  color="rgba(4, 4, 236, 0.9)"
+                  className="myLogo"
+                  style={{ margin: "5px" }}
+                />
+                <strike>{item}</strike>
+              </div>
+            );
+          }
+          return (
+            <div className="myListItem" key={_id}>
+              <BiMessageSquare
+                size="1rem"
+                color="rgba(4, 4, 236, 0.9)"
+                className="myLogo"
+                style={{ margin: "5px" }}
+                onClick={() => onCheck(listId, _id)}
+              />
+              <span>{item}</span>
+            </div>
+          );
+        })}
       </div>
       <hr className="myHr" />
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <small>{moment(date).format("lll")}</small>
+        <div className="myDivider" />
         <RiDeleteBin6Line
           size="2rem"
           color="rgba(4, 4, 236, 0.9)"
           className="myLogo"
           style={{ marginTop: "5px" }}
+          onClick={() => onRemove(listId)}
         />
       </div>
     </div>

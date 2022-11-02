@@ -1,7 +1,7 @@
 import Note from "../common/note";
 import "../../css/carousel.css";
 
-const Carousel = () => {
+const Carousel = ({ onCheck, onRemove, lists }) => {
   return (
     <div
       id="carouselExampleDark"
@@ -10,34 +10,23 @@ const Carousel = () => {
       data-bs-ride="false"
     >
       <div className="carousel-indicators" style={{ top: "97%" }}>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide-to="0"
-          className="active"
-          aria-current="true"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide-to="1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carouselExampleDark"
-          data-bs-slide-to="2"
-        ></button>
+        {lists.map((it, index) => (
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to={index}
+            className="active"
+            aria-current="true"
+            key={it._id}
+          ></button>
+        ))}
       </div>
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <Note />
-        </div>
-        <div className="carousel-item">
-          <Note />
-        </div>
-        <div className="carousel-item">
-          <Note />
-        </div>
+        {lists.map((list) => (
+          <div className="carousel-item active" key={list._id}>
+            <Note onCheck={onCheck} list={list} onRemove={onRemove} />
+          </div>
+        ))}
       </div>
     </div>
   );
