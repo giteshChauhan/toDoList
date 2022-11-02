@@ -1,5 +1,4 @@
 import Note from "../common/note";
-import "../../css/carousel.css";
 
 const Carousel = ({ onCheck, onRemove, lists }) => {
   return (
