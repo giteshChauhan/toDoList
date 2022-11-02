@@ -1,7 +1,7 @@
 /** List Service as name suggets provides services to perform CRUD operation in list in database */
 
-import http from "../../services/httpService";
-import { getJwt } from "../../services/authService";
+import http from "./httpService";
+import { getJwt } from "./authService";
 
 const apiEndPoint = "/list/";
 const token = getJwt();
