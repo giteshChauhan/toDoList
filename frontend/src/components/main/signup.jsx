@@ -1,10 +1,23 @@
 import { BsListCheck } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "../../css/login.css";
+import { register } from "../../services/userService";
 
 const Signup = () => {
-  const handleSubmit = (e) => {
+  const [form, setForm] = useState({ username: "", password: "" });
+  const [isDisable, setIsDisable] = useState(false);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsDisable(true);
+    try {
+      await register(form);
+      window.location = "/";
+    } catch (ex) {
+      setTimeout(() => {
+        setIsDisable(false);
+      }, 3000);
+    }
   };
 
   return (
@@ -19,9 +32,23 @@ const Signup = () => {
           ToDoList
         </Link>
         <form onSubmit={handleSubmit}>
-          <input placeholder="Username" type="email" />
-          <input placeholder="Password" type="password" />
-          <button className="myBtn">Register</button>
+          <fieldset disabled={isDisable}>
+            <input
+              placeholder="Username"
+              type="email"
+              onChange={(e) =>
+                setForm({ username: e.target.value, password: form.password })
+              }
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              onChange={(e) =>
+                setForm({ username: form.username, password: e.target.value })
+              }
+            />
+            <button className="myBtn">Register</button>
+          </fieldset>
         </form>
         <Link to={"/login"} className="navbar-brand">
           already registered?

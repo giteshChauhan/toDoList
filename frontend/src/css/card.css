@@ -25,10 +25,16 @@
 
 .myTasks {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   height: 100px;
   overflow: auto;
+}
+
+.myListItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .myInput {
@@ -45,4 +51,8 @@
 
 .myHr {
   margin: 0;
+}
+
+.myDivider {
+  flex: 1 0;
 }

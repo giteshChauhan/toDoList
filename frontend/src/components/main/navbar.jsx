@@ -1,24 +1,43 @@
-import { HiQueueList } from "react-icons/hi2";
-import { IoIosLogIn } from "react-icons/io";
+import { IoIosLogIn, IoIosLogOut } from "react-icons/io";
+import { TbLayoutList } from "react-icons/tb";
+import { Link } from "react-router-dom";
+
+import { logout } from "../../services/authService";
 import "../../css/navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
+  const handleLogout = () => {
+    logout();
+    window.location = "/";
+  };
+
   return (
     <nav className="navbar fixed-top myNavbar">
       <div className="container-fluid">
-        <a className="navbar-brand myBrand" href="#">
+        <Link className="navbar-brand myBrand" to={"/"}>
           ToDoList
-        </a>
+        </Link>
         <div>
-          <a className="myLink" href="#">
+          <Link className="myLink" to={"/"}>
             Dashboard
-          </a>
-          <a className="myLink" href="#">
+          </Link>
+          <Link className="myLink" to={"/profile"}>
             Profile
-          </a>
-          <a href="#" id="login" className="hide">
-            <IoIosLogIn size="1.75rem" />
-          </a>
+          </Link>
+          {!user && (
+            <Link to={"/login"} id="login" className="hide">
+              <IoIosLogIn size="1.75rem" />
+            </Link>
+          )}
+          {user && (
+            <span
+              onClick={() => handleLogout()}
+              id="login"
+              className="hide myLogo"
+            >
+              <IoIosLogOut size="1.75rem" />
+            </span>
+          )}
         </div>
         <div
           className="myToggler"
@@ -26,7 +45,7 @@ const Navbar = () => {
           data-bs-target="#offcanvasNavbar"
           aria-controls="offcanvasNavbar"
         >
-          <HiQueueList size="1.5rem" color="#000" />
+          <TbLayoutList size="1.5rem" color="#000" />
         </div>
         <div
           className="offcanvas offcanvas-end"
@@ -48,20 +67,33 @@ const Navbar = () => {
           <div className="offcanvas-body" style={{ paddingTop: "0" }}>
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link" aria-current="page" href="#">
+                <Link className="nav-link" aria-current="page" to={"/"}>
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to={"/"}>
                   Profile
-                </a>
+                </Link>
               </li>
-              <li className="nav-item">
-                <a href="#" id="login">
-                  <IoIosLogIn size="1.75rem" />
-                </a>
-              </li>
+              {!user && (
+                <li className="nav-item">
+                  <Link to={"/login"} id="login">
+                    <IoIosLogIn size="1.75rem" />
+                  </Link>
+                </li>
+              )}
+              {user && (
+                <li>
+                  <span
+                    onClick={() => handleLogout()}
+                    id="login"
+                    className="myLogo"
+                  >
+                    <IoIosLogOut size="1.75rem" />
+                  </span>
+                </li>
+              )}
             </ul>
           </div>
         </div>

@@ -1,10 +1,10 @@
 import DashBoard from "./dashboard";
 import Navbar from "./navbar";
 
-const Home = () => {
+const Home = ({ user }) => {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <DashBoard />
     </>
   );
